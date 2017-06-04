@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>注册</title>
+    <link rel="stylesheet" href="styles/login.css">
+</head>
+
+<body>
+    <div class="page-container">
+        <div class="main_box_bg"></div>
+        <div class="main_box">
+            <div class="login_box">
+                <fieldset class="layui-elem-field layui-field-title">
+                    <legend>缺钱么运维支撑管理系统</legend>
+                </fieldset>
+                <div class="login_form">
+                    <form id="login_form" method="post">
+                        <div class="form-group">
+                            <label for="j_username" class="t">邮　箱：</label>
+                            <input id="email" value="" name="email" type="text" class="form-control x319 in" autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <label for="j_password" class="t">密　码：</label>
+                            <input id="password" value="" name="password" type="password" class="password form-control x319 in">
+                        </div>
+                        <div class="form-group space">
+                            <label class="t"></label>
+                            <button id="submit_btn" class="layui-btn layui-btn-big layui-btn-radius">&nbsp;注&nbsp;册&nbsp;</button>
+                            <button type="reset" class="layui-btn layui-btn-big layui-btn-radius">&nbsp;重&nbsp;置&nbsp;</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="registered clearfix" onclick="window.location.href='/login'">
+                       <i class="layui-icon" style="font-size: 24px; color:#009688;">&#xe602;</i><span>登陆</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<section class="qqm-list-default">
+    <div class="qqm-operation-bar">
+        <form class="layui-form">
+            <div class="layui-form-item">
+                <div class="layui-form-pane">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">范围选择</label>
+                        <div class="layui-input-inline">
+                            <input class="layui-input" placeholder="开始日" name="startTime" id="startTime">
+                        </div>
+                        <div class="layui-input-inline">
+                            <input class="layui-input" placeholder="截止日" name="endTime" id="endTime">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn layui-btn-radius " lay-submit="" lay-filter="search">查询</button>
+                </div>
+            </div>
+        </form>
+        <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn layui-btn-radius" id="excel">导出Excel</button>
+                </div>
+            </div>
+    </div>
+    <table class="layui-table" id="tableExcel">
+        <thead>
+            <tr>
+                <th>小时粒度</th>
+                <th>注册用户</th>
+                <th>重复申请用户</th>
+                <th>首次申请用户</th>
+                <th>放款用户</th>
+                <th>放款总额</th>
+                <th>还款总额</th>
+            </tr>
+        </thead>
+        <tbody id="monitorView">
+            <script id="table" type="text/html">
+                    {{# layui.each(d, function(index, item){
+                     }}
+                    <tr>
+                        <td>{{ item.time }}</td>
+                        <td>{{ item.registered }}</td>
+                        <td>{{ item.repeat }}</td>
+                        <td>{{ item.frist }}</td>
+                        <td>{{ item.loansNumber }}</td>
+                        <td>{{ item.loansTotal }}</td>
+                        <td>{{ item.repaymentTotal }}</td>
+                    </tr>
+                    {{# }); }} {{# if(d.length === 0){ }} 
+                    <tr>
+                        <td colspan="7">暂无数据</td>
+                    </tr>
+                    {{# } }}
+            </script>
+        </tbody>
+    </table>
+    <div id="qqm-page-default" class="qqm-page-default"></div>
+    <div id="chartLine" class="chartMain"></div>
+    <div id="chartBar" class="chartMain"></div>
+</section>
+<script type="text/javascript" src="modules/qqm.monitor/index.js">
