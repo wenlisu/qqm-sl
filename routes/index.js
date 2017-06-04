@@ -14,16 +14,16 @@ var router_array_authorize = [
     ]; 
 
 router.get('/', function(req, res) {
-    res.render('login', { title: '缺钱么运维支撑管理系统' });
+    res.render('login', { title: '缺钱么运维支撑管理系统-登陆' });
 })
 router.get('/registered', function(req, res) {
-    res.render('registered', { title: '缺钱么运维支撑管理系统' });
+    res.render('registered', { title: '缺钱么运维支撑管理系统-注册' });
 })
 router.get(router_array_authorize, checknotLogin);
 // router.get('/index', checknotLogin)
 router.get('/index', function(req, res) {
 	console.log(req.url);
-    res.render('index', { title: '缺钱么运维支撑管理系统' });      
+    res.render('index', { title: '缺钱么运维支撑管理系统-首页' });      
 });
 
 router.get('/logout', function(req, res) {
