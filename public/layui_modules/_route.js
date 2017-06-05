@@ -17,14 +17,14 @@ layui.define(['layer', 'element', 'jquery'], function(exports) {
             }
         },
         $ = layui.jquery;
-    _route.format =  function() {
-            var s = arguments[0];
-            for (var i = 0; i < arguments.length - 1; i += 1) {
-                var reg = new RegExp('\\{' + i + '\\}', 'gm');
-                s = s.replace(reg, arguments[i + 1]);
-            }
-            return s;
-        };
+    _route.format = function() {
+        var s = arguments[0];
+        for (var i = 0; i < arguments.length - 1; i += 1) {
+            var reg = new RegExp('\\{' + i + '\\}', 'gm');
+            s = s.replace(reg, arguments[i + 1]);
+        }
+        return s;
+    };
     /**
      * 左边菜单跳转
      * @param url          跳转地址
@@ -35,6 +35,9 @@ layui.define(['layer', 'element', 'jquery'], function(exports) {
         var shade = $('.index-shade-ban'),
             progressNum = 0,
             progressTimer = null;
+        //tab栏与nav栏同时响应
+        $("ul[lay-filter='menu'] dd").attr("class", "");
+        $("ul[lay-filter='menu'] dd[qqm-menu='" + url + "']").attr("class", "layui-this");
 
         // 初始化链接参数
         _route.params = {};
@@ -42,7 +45,7 @@ layui.define(['layer', 'element', 'jquery'], function(exports) {
         if (!_.isEmpty(urlParams)) {
             _route.params = urlParams; // 链接参数赋值
         }
-        url = this.config.base ? _route.format(this.config.base, url): url;
+        url = this.config.base ? _route.format(this.config.base, url) : url;
 
         // 显示进度条
         /*$('#qqm-progress-page').removeClass('layui-hide');

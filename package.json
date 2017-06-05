@@ -3,9 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "serve":"supervisor app.js",
-    "test":"DEBUG=qqmSl npm start",
-    "start":"node ./bin/www"
+    "serve": "supervisor app.js",
+    "test": "DEBUG=qqmSl npm start",
+    "start": "node ./bin/www"
   },
   "dependencies": {
     "body-parser": "~1.13.2",

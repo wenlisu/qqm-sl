@@ -4,7 +4,8 @@ var writeExcel = require('../routes/jsGetData/formExcel');
 var moveExcel = require('../routes/jsGetData/moveExcelFileDowload');
 var LinkMongodb = require('./module/linkMongodb');
 var mongodbInfor = {
-	'host': '192.168.1.139',
+	// 'host': '192.168.1.139',
+	'host': '192.168.40.208',
 	'port':  '27017',
 	'database': 'monitorperhour'
 

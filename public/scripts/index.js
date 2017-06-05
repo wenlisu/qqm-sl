@@ -1,21 +1,60 @@
-layui.use(['element', '_fetch', '_config', '_route'], function(exports) {
-    var element = layui.element() //导航的hover效果、二级菜单等功能，需要依赖element模块
-    , _route = layui._route
-    ,_fetch = layui._fetch
-     ,api = layui._config.api;
+  layui.use(['layer', 'util', 'element', '_route', 'form', '_tab'], function() {
+            var layer = layui.layer,
+                util = layui.util,
+                element = layui.element(),
+                form = layui.form(),
+                _route = layui._route,
+                tab = layui._tab;
 
-    _fetch(api + 'user/login', {
-        "phone": "15298765432",
-        "password": "123456"
-    }).then(function(data) {
-        // console.log("data", data);
-    }, function(err) {
-        console.log("err", err);
-    });
-    //监听导航点击
-    element.on('nav(demo)', function(elem) {
-        var mUrl = elem.attr('qqm-menu');
-        !_.isEmpty(mUrl) && _route.go(mUrl);
-    });
+            window.$ = layui.jquery;
+            tab = tab({
+                elem: '.admin-nav-card' //设置选项卡容器
+                    ,
+                contextMenu: true
+            });
+            // 监听修改密码点击
+            $('#updatePassword-btn').on('click', function() {
+                layer.open({
+                    type: 1,
+                    shadeClose: true,
+                    title: '修改密码',
+                    offset: '20%',
+                    content: $('#updatePassword')
+                });
+            });
 
-});
+            // 监听导航点击
+            element.on('nav(menu)', function(elem) {
+                var mUrl = elem.attr('qqm-menu'),
+                    mTitle = elem.attr('qqm-title'),
+                    mT = {
+                        title: mTitle,
+                        url: mUrl
+                    };
+                !_.isEmpty(mUrl) && _route.go(mUrl);
+                tab.tabAdd(mT);
+            });
+            element.on('tab(admin-tab)', function(data) {
+                var tabUrl = $(this).attr("lay-id");
+                !_.isEmpty(tabUrl) && _route.go(tabUrl);
+
+            });
+            // 监听修改密码提交
+            form.on('submit(updatePassword)', function(data) {
+                layer.alert(JSON.stringify(data.field), {
+                    title: '最终的提交信息'
+                });
+                return false;
+            });
+
+            // 初始化欢迎页面
+            _route.setBreadcrumb(null, {
+                hide: true
+            });
+
+            $('#qqm-content').css('height', $(window).height() - 200);
+            $(window).resize(function() {
+                $('#qqm-content').css('height', $(window).height() - 200);
+            });
+
+        });

@@ -9,16 +9,14 @@ layui.use(['form', 'laypage', '_config','_route', '_fetch', '_view'], function (
     , layer = layui.layer
     , _view = new layui._view('#qqm-tpl');
 
-  _fetch(api + 'user/login', {
-        "phone": "15298765432",
-        "password": "123456"
-    }).then(function(data) {
-        // console.log("data", data);
-    }, function(err) {
-        // console.log("err", err);
-        layer.alert(err);
-    });
-        layer.alert('err', {icon: 2});
+  // _fetch(api + 'user/login', {
+  //       "phone": "15298765432",
+  //       "password": "123456"
+  //   }).then(function(data) {
+  //       // console.log("data", data);
+  //   }, function(err) {
+  //       layer.alert(err, {icon: 2});
+  //   });
 
 
   // 初始化当前位置
