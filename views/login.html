@@ -31,19 +31,31 @@
     </div>
     <% include footer.html %>
         <script type="text/javascript">
-        layui.use(['form','layer','_fetch','_config'], function() {
+        layui.use(['form', 'layer', '_fetch', '_config'], function() {
             var form = layui.form(),
-                layer = layui.layer
-                ,_fetch = layui._fetch
-                ,api = layui._config.api;
+                layer = layui.layer,
+                _fetch = layui._fetch,
+                api = layui._config.api;
             //监听提交
             form.on('submit(login)', function(data) {
-              _fetch('/authorize', 
+                _fetch('/authorize',
                     data.field
                 ).then(function(data) {
-                    console.log("data", data);
+                    console.log(data.success == 800 && data.failed == 744);
+                    if (data.success == 800 && data.failed == 744) {
+                        layer.alert("登录成功", {
+                            icon: 1
+                        });
+                        window.location.href='/index';
+                    } else {
+                        layer.alert("邮箱账号或密码不对", {
+                            icon: 2
+                        });
+                    }
                 }, function(err) {
-                    layer.alert(err, {icon: 2});
+                    layer.alert(err, {
+                        icon: 2
+                    });
                 });
 
                 return false;

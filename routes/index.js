@@ -162,9 +162,9 @@ router.post('/authorize',function(req, res){
     console.log(req.body)
     if(req.body.email === user.email && req.body.password === user.password){
         req.session.user = req.body.email;
-        console.log(req.session);
-        console.log(req.url);
-        console.log(req.params);
+        console.log("req.session",req.session);
+        console.log("req.url",req.url);
+        console.log("req.params",req.params);
 
         if(req.session.user){ 
 	   loginStatus.success = 800;
@@ -177,6 +177,7 @@ router.post('/authorize',function(req, res){
     var loginJson = JSON.stringify(loginStatus);
     res.writeHead(200, {"Content-Type": "text/plain"});
     res.write(loginJson);
+    // res.
     res.end();
 
 });
@@ -209,6 +210,7 @@ router.get('/show', function(req, res) {
 });
 
 function checknotLogin(req, res, next) {
+    console.log("checknotLogin",req.session.user);
     if(req.session.user){
         next();
     } else {
