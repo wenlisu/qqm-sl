@@ -15,9 +15,6 @@ var db = connectDb.connect();
 var monitor_per_hour_schema = require('./module/monitor_per_hour_schema');
 var monitorPerHour = db.model('perHours', monitor_per_hour_schema.monitorPerHourSchema);
 
-// console.log(db);
-
-
 function getResultByFindDate(objDate, res, response, download){
 	    
 	var dt = {

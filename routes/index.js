@@ -85,7 +85,6 @@ router.post('/testPost', function(req, res) {
         date0: String(req.body.date0),
         date1: String(req.body.date1)
     };
-    console.log(req.body.date0);
     var download = 0;
     monitorPerHourFind.getResultByFindDate(objdata, res, response.responseData, download);
 });

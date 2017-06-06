@@ -4,12 +4,12 @@
             <div class="layui-form-item">
                 <div class="layui-form-pane">
                     <div class="layui-form-item">
-                        <label class="layui-form-label">范围选择</label>
+                        <label class="layui-form-label">时间选择</label>
                         <div class="layui-input-inline">
-                            <input class="layui-input" placeholder="开始日" name="startTime" id="startTime">
+                            <input class="layui-input" placeholder="开始日" name="date0" id="date0">
                         </div>
                         <div class="layui-input-inline">
-                            <input class="layui-input" placeholder="截止日" name="endTime" id="endTime">
+                            <input class="layui-input" placeholder="截止日" name="date1" id="date1">
                         </div>
                     </div>
                 </div>
@@ -39,19 +39,8 @@
             </tr>
         </thead>
         <tbody id="monitorView">
-            <script id="table" type="text/html">
-                    {{# layui.each(d, function(index, item){
-                     }}
-                    <tr>
-                        <td>{{ item.time }}</td>
-                        <td>{{ item.registered }}</td>
-                        <td>{{ item.repeat }}</td>
-                        <td>{{ item.frist }}</td>
-                        <td>{{ item.loansNumber }}</td>
-                        <td>{{ item.loansTotal }}</td>
-                        <td>{{ item.repaymentTotal }}</td>
-                    </tr>
-                    {{# }); }} {{# if(d.length === 0){ }} 
+             <script id="table" type="text/html">
+                    {{# if(d.length === 0){ }} 
                     <tr>
                         <td colspan="7">暂无数据</td>
                     </tr>
@@ -59,7 +48,6 @@
             </script>
         </tbody>
     </table>
-    <div id="qqm-page-default" class="qqm-page-default"></div>
     <div id="chartLine" class="chartMain"></div>
     <div id="chartBar" class="chartMain"></div>
 </section>
