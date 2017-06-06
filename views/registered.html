@@ -1,36 +1,70 @@
 <% include header.html %>
-    <div class="page-container">
-        <div class="main_box_bg"></div>
-        <div class="main_box">
-            <div class="login_box">
-                <fieldset class="layui-elem-field layui-field-title">
-                    <legend>缺钱么运维支撑管理系统</legend>
-                </fieldset>
-                <div class="login_form">
-                    <form id="login_form" method="post">
-                        <div class="form-group">
-                            <label for="j_username" class="t">邮　箱：</label>
-                            <input id="email" value="" name="email" type="text" class="form-control x319 in" autocomplete="off">
+
+    <body class="registered">
+        <% include message.html %>
+            <div class="page-container">
+                <div class="main_box_bg"></div>
+                <div class="main_box">
+                    <div class="login_box">
+                        <fieldset class="layui-elem-field layui-field-title">
+                            <legend>缺钱么运维支撑管理系统</legend>
+                        </fieldset>
+                        <div class="login_form">
+                            <form class="layui-form" role="form" method="post" onsubmit="return false">
+                                <div class="layui-form-item form-group">
+                                    <label for="j_username" class="t">邮　箱：</label>
+                                    <input id="email" value="" name="email" type="text" required lay-verify="required" class="form-control x319 in" autocomplete="off">
+                                </div>
+                                <div class="form-group">
+                                    <label for="j_password" class="t">密　码：</label>
+                                    <input id="password" value="" name="password" type="password" class="password form-control x319 in" required lay-verify="required">
+                                </div>
+                                <div class="form-group space">
+                                    <label class="t"></label>
+                                    <button type="submit" id="register1" class="layui-btn layui-btn-big layui-btn-radius" lay-submit lay-filter="regist">&nbsp;注&nbsp;册&nbsp;</button>
+                                    <button type="reset" class="layui-btn layui-btn-big layui-btn-radius">&nbsp;重&nbsp;置&nbsp;</button>
+                                </div>
+                            </form>
                         </div>
-                        <div class="form-group">
-                            <label for="j_password" class="t">密　码：</label>
-                            <input id="password" value="" name="password" type="password" class="password form-control x319 in">
+                        <div class="registered clearfix" onclick="window.location.href='/login'">
+                            <i class="layui-icon" style="font-size: 24px; color:#009688;">&#xe602;</i><span>登陆</span>
                         </div>
-                        <div class="form-group space">
-                            <label class="t"></label>
-                            <button id="submit_btn" class="layui-btn layui-btn-big layui-btn-radius">&nbsp;注&nbsp;册&nbsp;</button>
-                            <button type="reset" class="layui-btn layui-btn-big layui-btn-radius">&nbsp;重&nbsp;置&nbsp;</button>
-                        </div>
-                    </form>
-                </div>
-                <div class="registered clearfix" onclick="window.location.href='/login'">
-                       <i class="layui-icon" style="font-size: 24px; color:#009688;">&#xe602;</i><span>登陆</span>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <% include footer.html %>
-    
-</body>
+            <% include footer.html %>
+                <script type="text/javascript">
+                layui.use(['form', 'layer', '_fetch', '_config', 'jquery'], function() {
+                    var form = layui.form(),
+                        layer = layui.layer,
+                        _fetch = layui._fetch,
+                        api = layui._config.api,
+                        $ = layui.jquery;
+                    //监听提交
+                    form.on('submit(regist)', function(data) {
+                        var username = $("#email").val();
+                        var password = $("#password").val();
+                        var registData = {
+                            "uname": username,
+                            "upwd": password
+                        };
+                        $.ajax({
+                            url: '/register',
+                            type: 'post',
+                            data: registData,
+                            success: function(data, status) {
+                                if (status == 'success') {
+                                    location.href = 'login';
+                                }
+                            },
+                            error: function(data, err) {
+                                location.href = 'registered';
+                            }
+                        });
+                        return false;
+                    });
+                });
+                </script>
+    </body>
 
-</html>
+    </html>

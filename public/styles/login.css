@@ -4,7 +4,7 @@
 
 /* CSS Document */
 
-body {
+body.login,body.registered {
     background: #23262e;
 }
 
@@ -129,13 +129,27 @@ body {
     width: 100%;
     cursor: pointer;
 }
-.registered i{
-	float: left;
+
+.registered i {
+    float: left;
 }
+
 .registered span {
-	display: inline-block;
-	height: 28px;
-	line-height: 28px;
-	float: left;
-    color:#009688;
+    display: inline-block;
+    height: 28px;
+    line-height: 28px;
+    float: left;
+    color: #009688;
+}
+
+.layui-login-alert {
+    width: 550px;
+    color: red;
+    margin: 0 auto;
+    padding: 15px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    font-weight: bold;
 }

@@ -1,4 +1,5 @@
 <% include header.html %>
+<body>
     <div class="layui-layout layui-layout-admin">
         <header class="layui-header header header-demo">
             <div class="layui-main">
@@ -7,9 +8,9 @@
                 </a>
                 <h2 class="title">缺钱么运维支撑管理系统</h2>
                 <ul class="navigation-nav" lay-filter="">
-                    <li><a>欢迎您，Ls</a></li>
+                    <li><a>欢迎您，<%- user.name %></a></li>
                     <li id="updatePassword-btn"><span><i class="iconfont icon-xiugaimima"></i></span><span>修改密码</span></li>
-                    <li onclick="window.location.href='modules/login/login.html'"><span><i class="iconfont icon-tuichu"></i></span><span>退出登录</span></li>
+                    <li onclick="window.location.href='/login'"><span><i class="iconfont icon-tuichu"></i></span><span>退出登录</span></li>
                     <span class="layui-nav-bar" style="left: 68px; top: 55px; width: 0px; opacity: 0;"></span>
                 </ul>
             </div>

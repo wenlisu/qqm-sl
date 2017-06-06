@@ -1,67 +1,72 @@
 <% include header.html %>
-    <div class="page-container">
-        <div class="main_box_bg"></div>
-        <div class="main_box">
-            <div class="login_box">
-                <fieldset class="layui-elem-field layui-field-title">
-                    <legend>缺钱么运维支撑管理系统</legend>
-                </fieldset>
-                <div class="login_form">
-                    <form class="layui-form " id="login_form" method="post">
-                        <div class="layui-form-item form-group ">
-                            <label for="j_username" class="t">邮　箱：</label>
-                            <input type="text" id="email" value="" name="email" required lay-verify="required" autocomplete="off" class="password form-control x319">
+
+    <body class="login">
+        <% include message.html %>
+            <div class="page-container">
+                <div class="main_box_bg"></div>
+                <div class="main_box">
+                    <div class="login_box">
+                        <fieldset class="layui-elem-field layui-field-title">
+                            <legend>缺钱么运维支撑管理系统</legend>
+                        </fieldset>
+                        <div class="login_form">
+                            <form class="layui-form " role="form" method="post" onsubmit="return false">
+                                <div class="layui-form-item form-group ">
+                                    <label for="j_username" class="t">邮　箱：</label>
+                                    <input type="text" id="email" value="" name="email" required lay-verify="required" autocomplete="off" class="password form-control x319">
+                                </div>
+                                <div class="layui-form-item form-group">
+                                    <label for="j_password" class="t">密　码：</label>
+                                    <input type="password" id="password" value="" name="password" required lay-verify="required" autocomplete="off" class="password form-control x319">
+                                </div>
+                                <div class="layui-form-item form-group space">
+                                    <label class="t"></label>
+                                    <button type="submit" id="login0" class="layui-btn layui-btn-big layui-btn-radius" lay-submit lay-filter="login">&nbsp;登&nbsp;录&nbsp;</button>
+                                    <button type="reset" class="layui-btn layui-btn-big layui-btn-radius">&nbsp;重&nbsp;置&nbsp;</button>
+                                </div>
+                            </form>
                         </div>
-                        <div class="layui-form-item form-group">
-                            <label for="j_password" class="t">密　码：</label>
-                            <input type="password" id="password" value="" name="password" required lay-verify="required" autocomplete="off" class="password form-control x319">
+                        <div class="registered clearfix" onclick="window.location.href='/registered'">
+                            <i class="layui-icon" style="font-size: 24px; color:#009688;">&#xe602;</i> <span>注册</span>
                         </div>
-                        <div class="layui-form-item form-group space">
-                            <label class="t"></label>
-                            <button type="button" id="submit_btn" class="layui-btn layui-btn-big layui-btn-radius" lay-submit lay-filter="login">&nbsp;登&nbsp;录&nbsp;</button>
-                            <button type="reset" class="layui-btn layui-btn-big layui-btn-radius">&nbsp;重&nbsp;置&nbsp;</button>
-                        </div>
-                    </form>
-                </div>
-                <div class="registered clearfix" onclick="window.location.href='/registered'">
-                    <i class="layui-icon" style="font-size: 24px; color:#009688;">&#xe602;</i> <span>注册</span>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <% include footer.html %>
-        <script type="text/javascript">
-        layui.use(['form', 'layer', '_fetch', '_config'], function() {
-            var form = layui.form(),
-                layer = layui.layer,
-                _fetch = layui._fetch,
-                api = layui._config.api;
-            //监听提交
-            form.on('submit(login)', function(data) {
-                _fetch('/authorize',
-                    data.field
-                ).then(function(data) {
-                    console.log(data.success == 800 && data.failed == 744);
-                    if (data.success == 800 && data.failed == 744) {
-                        layer.alert("登录成功", {
-                            icon: 1
+            <% include footer.html %>
+                <script type="text/javascript">
+                layui.use(['form', 'layer', '_fetch', '_config', 'jquery'], function() {
+                    var form = layui.form(),
+                        layer = layui.layer,
+                        _fetch = layui._fetch,
+                        api = layui._config.api,
+                        $ = layui.jquery;
+                    //监听提交
+                    form.on('submit(login)', function(data) {
+                        var username = $("#email").val();
+                        var password = $("#password").val();
+                        var loginData = {
+                            "uname": username,
+                            "upwd": password
+                        };
+                        $.ajax({
+                            url: '/login',
+                            type: 'post',
+                            data: loginData,
+                            success: function(data, status) {
+                                if (status == 'success') {
+                                    location.href = 'index';
+                                }
+                            },
+                            error: function(data, status) {
+                                if (status == 'error') {
+                                    location.href = 'login';
+                                }
+                            }
                         });
-                        window.location.href='/index';
-                    } else {
-                        layer.alert("邮箱账号或密码不对", {
-                            icon: 2
-                        });
-                    }
-                }, function(err) {
-                    layer.alert(err, {
-                        icon: 2
+                        return false;
                     });
                 });
+                </script>
+    </body>
 
-                return false;
-            });
-        });
-        </script>
-        </body>
-
-        </html>
+    </html>
