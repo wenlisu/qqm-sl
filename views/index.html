@@ -48,10 +48,10 @@
                     </li>
                     <li class="layui-nav-item"><a href="javascript:;"><i class="iconfont icon-gongju"></i>运维工具</a>
                         <dl class="layui-nav-child">
-                            <dd  onclick="window.open('http://gitlab.gz.queqianme.com/')">
+                            <dd onclick="window.open('http://gitlab.gz.queqianme.com/')">
                                 <a>Gitlab代码管理</a>
                             </dd>
-                            <dd  onclick="window.open('http://jenkins.gz.queqianme.com:8182/')">
+                            <dd onclick="window.open('http://jenkins.gz.queqianme.com:8182/')">
                                 <a>自动化构建</a>
                             </dd>
                             <dd onclick="window.open('http://redmine.gz.queqianme.com:8787/redmine/login')">
@@ -80,21 +80,23 @@
             </nav>
             <!-- 内容区域 -->
             <div class="layui-body" style="bottom: 0;border-left: solid 2px #1AA094;" id="admin-body">
-                <div class="layui-tab admin-nav-card layui-tab-brief qqm-module" lay-filter="admin-tab">
+                <div class="layui-tab admin-nav-card layui-tab-brief qqm-module" lay-filter="admin-tab" lay-allowclose="true">
                     <ul class="layui-tab-title">
                         <li class="layui-this" lay-id="index">
                             <i class="layui-icon" aria-hidden="true">&#xe630;</i>
                             <cite>控制面板</cite>
                         </li>
                     </ul>
-                    <div class="qqm-breadcrumb">
-                        <span class="layui-breadcrumb">
-                    </span>
-                    </div>
-                    <div class="qqm-content" id="qqm-content">
-                        <section>
+                    <div class="qqm-content" >
+                        <div class="qqm-breadcrumb">
+                            <span class="layui-breadcrumb">
+                            </span>
+                        </div>
+                        <!-- <section>
                             <h5 class="qqm-welcome-title">欢迎进入admin，请点击左侧菜单开始操作吧！</h5>
-                        </section>
+                        </section> -->
+                        <div class="layui-tab-content" id="qqm-content">
+                        </div>
                     </div>
                 </div>
             </div>

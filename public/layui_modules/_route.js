@@ -10,13 +10,14 @@
 layui.define(['layer', 'element', 'jquery'], function(exports) {
     var layer = layui.layer,
         element = layui.element(),
+        $ = layui.jquery,
         _route = {
+            contentBox: $("#qqm-content"),
             params: {}, // 当前页面地址参数
             config: { // 路由跳转配置
                 base: '' // 模块路径配置
             }
-        },
-        $ = layui.jquery;
+        };
     _route.format = function() {
         var s = arguments[0];
         for (var i = 0; i < arguments.length - 1; i += 1) {
@@ -24,6 +25,29 @@ layui.define(['layer', 'element', 'jquery'], function(exports) {
             s = s.replace(reg, arguments[i + 1]);
         }
         return s;
+    };
+    _route.exists = function(url) {
+        var that = this.contentBox,
+            tabIndex = -1;
+        this.contentBox.find('>div').each(function(i, e) {
+            var $id = $(this).attr("lay-id");
+            console.log($id, url, i);
+            if ($id === url) {
+                tabIndex = i;
+            };
+        });
+        return tabIndex;
+    };
+    _route.getTabId = function(url) {
+        var that = this.contentBox,
+            tabIndex = -1;
+        this.contentBox.find('>div').each(function(i, e) {
+            var $id = $(this).attr("lay-id");
+            if ($id === url) {
+                tabIndex = $(this).attr('lay-id');
+            };
+        });
+        return tabIndex;
     };
     /**
      * 左边菜单跳转
@@ -38,38 +62,36 @@ layui.define(['layer', 'element', 'jquery'], function(exports) {
         //tab栏与nav栏同时响应
         $("ul[lay-filter='menu'] dd").attr("class", "");
         $("ul[lay-filter='menu'] dd[qqm-menu='" + url + "']").attr("class", "layui-this");
+        var tabIndex = this.exists(url);
 
         // 初始化链接参数
         _route.params = {};
-
-        if (!_.isEmpty(urlParams)) {
-            _route.params = urlParams; // 链接参数赋值
-        }
-        url = this.config.base ? _route.format(this.config.base, url) : url;
-
-        // 显示进度条
-        /*$('#qqm-progress-page').removeClass('layui-hide');
-
-        progressTimer = setInterval(function () {
-          progressNum = progressNum + Math.random() * 10 | 0;
-          element.progress('request-progress', progressNum + '%');
-        }, 300 + Math.random() * 1000);*/
-
-        // 请求页面
-        $.ajax({
-            url: url,
-            type: 'GET',
-            complete: function() {},
-            success: function(data) {
-                $('#qqm-content').html(data);
-                /*// 进度条全部加载
-                clearInterval(progressTimer);
-                element.progress('request-progress', '100%');
-                setTimeout(function () {
-                  $('#qqm-progress-page').addClass('layui-hide');
-                }, 300);*/
+        if (tabIndex === -1) {
+            var urlOrigin = url;
+            var that = this;
+            if (!_.isEmpty(urlParams)) {
+                _route.params = urlParams; // 链接参数赋值
             }
-        });
+            url = this.config.base ? _route.format(this.config.base, url) : url;
+
+
+            // 请求页面
+            $.ajax({
+                url: url,
+                type: 'GET',
+                complete: function() {},
+                success: function(data) {
+                    $("#qqm-content > div").attr("class", "layui-tab-item");
+                    var addDom = `<div lay-id=${urlOrigin} class="layui-tab-item layui-show">${data}</div>`;
+                    that.contentBox.append(addDom);
+                }
+            });
+        } else {
+            //切换tab
+            $("#qqm-content > div").attr("class", "layui-tab-item ");
+            console.log("aaa", $("#qqm-content > div[lay-id='" + url + "']"));
+            $("#qqm-content > div[lay-id='" + url + "']").attr("class", "layui-tab-item layui-show");
+        }
     };
 
     /**
