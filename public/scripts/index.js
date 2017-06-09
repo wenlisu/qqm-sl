@@ -25,14 +25,16 @@
 
       // 监听导航点击
       element.on('nav(menu)', function(elem) {
-          var mUrl = elem.attr('qqm-menu'),
-              mTitle = elem.attr('qqm-title'),
+          var mUrl = elem.attr('qqm-menu') || null,
+              mTitle = elem.attr('qqm-title') || null,
               mT = {
                   title: mTitle,
                   url: mUrl
               };
           !_.isEmpty(mUrl) && _route.go(mUrl);
-          tab.tabAdd(mT);
+          if (mT.title && mT.url) {
+              tab.tabAdd(mT);
+          }
       });
       element.on('tab(admin-tab)', function(data) {
           var tabUrl = $(this).attr("lay-id");

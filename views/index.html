@@ -1,140 +1,144 @@
 <% include header.html %>
+
     <body>
-            <div class="layui-layout layui-layout-admin">
-                <header class="layui-header header header-demo">
-                    <div class="layui-main">
-                        <a class="logo" href="/">
-                            <img src="./images/logo.png" alt="layui">
-                        </a>
-                        <h2 class="title">缺钱么运维支撑管理系统</h2>
-                        <ul class="navigation-nav" lay-filter="">
-                            <li><a>欢迎您，<%- user.name %></a></li>
-                            <li id="updatePassword-btn"><span><i class="iconfont icon-xiugaimima"></i></span><span>修改密码</span></li>
-                            <li onclick="window.location.href='/login'"><span><i class="iconfont icon-tuichu"></i></span><span>退出登录</span></li>
-                            <span class="layui-nav-bar" style="left: 68px; top: 55px; width: 0px; opacity: 0;"></span>
-                        </ul>
-                    </div>
-                </header>
-                <nav class="layui-side layui-bg-black">
-                    <ul class="layui-nav layui-nav-tree site-demo-nav" lay-filter="menu">
-                        <li class="layui-nav-item">
-                            <a href="javascript:;"><i class="iconfont icon-yunyingshujuzhongduan" ></i>运营数据监测</a>
-                            <dl class="layui-nav-child">
-                                <dd qqm-title="运营每时粒度监控" qqm-menu="qqm.monitor">
-                                    <a>运营每时粒度监控</a>
-                                </dd>
-                                <dd qqm-title="运营基础数据" qqm-menu="qqm.baseNumber">
-                                    <a>运营基础数据</a>
-                                </dd>
-                            </dl>
-                        </li>
-                        <li class="layui-nav-item">
-                            <a href="javascript:;"><i class="iconfont icon-hangdongrizhi"></i>后台log日志</a>
-                            <dl class="layui-nav-child">
-                                <dd qqm-title="线上服务器" qqm-menu="qqm.onlineServer">
-                                    <a>线上服务器</a>
-                                </dd>
-                                <dd qqm-title="线下服务器" qqm-menu="qqm.offlineServer">
-                                    <a>线下服务器</a>
-                                </dd>
-                                <dd qqm-title="实时log" qqm-menu="qqm.log">
-                                    <a>实时log</a>
-                                </dd>
-                            </dl>
-                        </li>
-                        <li class="layui-nav-item"><a href="javascript:;"><i class="iconfont icon-gongju"></i>运维工具</a>
-                            <dl class="layui-nav-child">
-                                <dd qqm-title="Gitlab代码管理" onclick="window.open('http://gitlab.gz.queqianme.com/')">
-                                    <a>Gitlab代码管理</a>
-                                </dd>
-                                <dd qqm-title="自动化构建" onclick="window.open('http://jenkins.gz.queqianme.com:8182/')">
-                                    <a>自动化构建</a>
-                                </dd>
-                                <dd qqm-title="Bug管理" onclick="window.open('http://redmine.gz.queqianme.com:8787/redmine/login')">
-                                    <a>Bug管理</a>
-                                </dd>
-                            </dl>
-                        </li>
-                        <li class="layui-nav-item"><a href="javascript:;"><i class="iconfont icon-jiankongfuwu"></i>机房服务器监控</a>
-                            <dl class="layui-nav-child">
-                                <dd qqm-title="cpu温度" qqm-menu="qqm.cpu">
-                                    <a>cpu温度</a>
-                                </dd>
-                                <dd qqm-title="网络" qqm-menu="qqm.internet">
-                                    <a>网络</a>
-                                </dd>
-                            </dl>
-                        </li>
-                        <li class="layui-nav-item"><a href="javascript:;"><i class="iconfont icon-12-01"></i>系统管理</a>
-                            <dl class="layui-nav-child">
-                                <dd qqm-title="退出系统" qqm-menu="#">
-                                    <a>退出系统</a>
-                                </dd>
-                            </dl>
+        <div class="layui-progress qqm-progress-page layui-hide" id="qqm-progress-page" lay-filter="request-progress">
+            <div class="layui-progress-bar layui-bg-blue" lay-percent="0"></div>
+        </div>
+        <div class="layui-layout layui-layout-admin">
+            <header class="layui-header header header-demo">
+                <div class="layui-main">
+                    <a class="logo" href="/">
+                        <img src="./images/logo.png" alt="layui">
+                    </a>
+                    <h2 class="title">缺钱么运维支撑管理系统</h2>
+                    <ul class="navigation-nav" lay-filter="">
+                        <li><a>欢迎您，<%- user.name %></a></li>
+                        <li id="updatePassword-btn"><span><i class="iconfont icon-xiugaimima"></i></span><span>修改密码</span></li>
+                        <li onclick="window.location.href='/login'"><span><i class="iconfont icon-tuichu"></i></span><span>退出登录</span></li>
+                        <span class="layui-nav-bar" style="left: 68px; top: 55px; width: 0px; opacity: 0;"></span>
+                    </ul>
+                </div>
+            </header>
+            <nav class="layui-side layui-bg-black">
+                <ul class="layui-nav layui-nav-tree site-demo-nav" lay-filter="menu">
+                    <li class="layui-nav-item">
+                        <a href="javascript:;"><i class="iconfont icon-yunyingshujuzhongduan" ></i>运营数据监测</a>
+                        <dl class="layui-nav-child">
+                            <dd qqm-title="运营每时粒度监控" qqm-menu="qqm.monitor">
+                                <a>运营每时粒度监控</a>
+                            </dd>
+                            <dd qqm-title="运营基础数据" qqm-menu="qqm.baseNumber">
+                                <a>运营基础数据</a>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;"><i class="iconfont icon-hangdongrizhi"></i>后台log日志</a>
+                        <dl class="layui-nav-child">
+                            <dd qqm-title="线上服务器" qqm-menu="qqm.onlineServer">
+                                <a>线上服务器</a>
+                            </dd>
+                            <dd qqm-title="线下服务器" qqm-menu="qqm.offlineServer">
+                                <a>线下服务器</a>
+                            </dd>
+                            <dd qqm-title="实时log" qqm-menu="qqm.log">
+                                <a>实时log</a>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item"><a href="javascript:;"><i class="iconfont icon-gongju"></i>运维工具</a>
+                        <dl class="layui-nav-child">
+                            <dd  onclick="window.open('http://gitlab.gz.queqianme.com/')">
+                                <a>Gitlab代码管理</a>
+                            </dd>
+                            <dd  onclick="window.open('http://jenkins.gz.queqianme.com:8182/')">
+                                <a>自动化构建</a>
+                            </dd>
+                            <dd onclick="window.open('http://redmine.gz.queqianme.com:8787/redmine/login')">
+                                <a>Bug管理</a>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item"><a href="javascript:;"><i class="iconfont icon-jiankongfuwu"></i>机房服务器监控</a>
+                        <dl class="layui-nav-child">
+                            <dd qqm-title="cpu温度" qqm-menu="qqm.cpu">
+                                <a>cpu温度</a>
+                            </dd>
+                            <dd qqm-title="网络" qqm-menu="qqm.internet">
+                                <a>网络</a>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item"><a href="javascript:;"><i class="iconfont icon-12-01"></i>系统管理</a>
+                        <dl class="layui-nav-child">
+                            <dd qqm-title="退出系统" qqm-menu="#">
+                                <a>退出系统</a>
+                            </dd>
+                        </dl>
+                    </li>
+                </ul>
+            </nav>
+            <!-- 内容区域 -->
+            <div class="layui-body" style="bottom: 0;border-left: solid 2px #1AA094;" id="admin-body">
+                <div class="layui-tab admin-nav-card layui-tab-brief qqm-module" lay-filter="admin-tab">
+                    <ul class="layui-tab-title">
+                        <li class="layui-this" lay-id="index">
+                            <i class="layui-icon" aria-hidden="true">&#xe630;</i>
+                            <cite>控制面板</cite>
                         </li>
                     </ul>
-                </nav>
-                <!-- 内容区域 -->
-                <div class="layui-body" style="bottom: 0;border-left: solid 2px #1AA094;" id="admin-body">
-                    <div class="layui-tab admin-nav-card layui-tab-brief qqm-module" lay-filter="admin-tab">
-                        <ul class="layui-tab-title">
-                            <li class="layui-this" lay-id="index">
-                                <i class="layui-icon" aria-hidden="true">&#xe630;</i>
-                                <cite>控制面板</cite>
-                            </li>
-                        </ul>
-                        <div class="qqm-breadcrumb">
-                            <span class="layui-breadcrumb">
+                    <div class="qqm-breadcrumb">
+                        <span class="layui-breadcrumb">
                     </span>
-                        </div>
-                        <div class="qqm-content" id="qqm-content">
-                            <section>
-                                <h5 class="qqm-welcome-title">欢迎进入admin，请点击左侧菜单开始操作吧！</h5>
-                            </section>
-                        </div>
+                    </div>
+                    <div class="qqm-content" id="qqm-content">
+                        <section>
+                            <h5 class="qqm-welcome-title">欢迎进入admin，请点击左侧菜单开始操作吧！</h5>
+                        </section>
                     </div>
                 </div>
-                <footer class="layui-footer footer footer-doc">
-                    <div class="layui-main">
-                        <p>Copyright©2015 广东缺钱么网络科技有限公司</p>
-                    </div>
-                </footer>
             </div>
-            <!--修改密码弹窗-->
-            <div id="updatePassword" class="index-updatePassword qqm-info-default">
-                <form class="layui-form" role="form" method="post" onsubmit="return false">
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">账号</label>
-                        <div class="layui-input-block qqm-input-required">
-                            <input type="text" name="email" id="email" lay-verify="required" autocomplete="off" placeholder="请输入账号" class="layui-input">
-                        </div>
+            <footer class="layui-footer footer footer-doc">
+                <div class="layui-main">
+                    <p>Copyright©2015 广东缺钱么网络科技有限公司</p>
+                </div>
+            </footer>
+        </div>
+        <!--修改密码弹窗-->
+        <div id="updatePassword" class="index-updatePassword qqm-info-default">
+            <form class="layui-form" role="form" method="post" onsubmit="return false">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">账号</label>
+                    <div class="layui-input-block qqm-input-required">
+                        <input type="text" name="email" id="email" lay-verify="required" autocomplete="off" placeholder="请输入账号" class="layui-input">
                     </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">旧密码</label>
-                        <div class="layui-input-block qqm-input-required">
-                            <input type="password" name="oldPassword" id="oldPassword" lay-verify="required" autocomplete="off" placeholder="请输入旧密码" class="layui-input">
-                        </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">旧密码</label>
+                    <div class="layui-input-block qqm-input-required">
+                        <input type="password" name="oldPassword" id="oldPassword" lay-verify="required" autocomplete="off" placeholder="请输入旧密码" class="layui-input">
                     </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">新密码</label>
-                        <div class="layui-input-block qqm-input-required">
-                            <input type="password" name="password" id="password" lay-verify="required" autocomplete="off" placeholder="请输入新密码" class="layui-input">
-                        </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">新密码</label>
+                    <div class="layui-input-block qqm-input-required">
+                        <input type="password" name="password" id="password" lay-verify="required" autocomplete="off" placeholder="请输入新密码" class="layui-input">
                     </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">确认密码</label>
-                        <div class="layui-input-block qqm-input-required">
-                            <input type="password" name="confirmPassword" id="confirmPassword" lay-verify="required" autocomplete="off" placeholder="请确认密码" class="layui-input">
-                        </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">确认密码</label>
+                    <div class="layui-input-block qqm-input-required">
+                        <input type="password" name="confirmPassword" id="confirmPassword" lay-verify="required" autocomplete="off" placeholder="请确认密码" class="layui-input">
                     </div>
-                    <div class="layui-form-item">
-                        <div class="layui-input-block">
-                            <button type="submit" class="layui-btn" lay-submit lay-filter="updatePassword">提交</button>
-                        </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button type="submit" class="layui-btn" lay-submit lay-filter="updatePassword">提交</button>
                     </div>
-                </form>
-            </div>
-            <% include footer.html %>
+                </div>
+            </form>
+        </div>
+        <% include footer.html %>
     </body>
 
     </html>
