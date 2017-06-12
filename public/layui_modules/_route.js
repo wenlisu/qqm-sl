@@ -31,7 +31,6 @@ layui.define(['layer', 'element', 'jquery'], function(exports) {
             tabIndex = -1;
         this.contentBox.find('>div').each(function(i, e) {
             var $id = $(this).attr("lay-id");
-            console.log($id, url, i);
             if ($id === url) {
                 tabIndex = i;
             };
@@ -73,8 +72,6 @@ layui.define(['layer', 'element', 'jquery'], function(exports) {
                 _route.params = urlParams; // 链接参数赋值
             }
             url = this.config.base ? _route.format(this.config.base, url) : url;
-
-
             // 请求页面
             $.ajax({
                 url: url,
@@ -89,7 +86,6 @@ layui.define(['layer', 'element', 'jquery'], function(exports) {
         } else {
             //切换tab
             $("#qqm-content > div").attr("class", "layui-tab-item ");
-            console.log("aaa", $("#qqm-content > div[lay-id='" + url + "']"));
             $("#qqm-content > div[lay-id='" + url + "']").attr("class", "layui-tab-item layui-show");
         }
     };
