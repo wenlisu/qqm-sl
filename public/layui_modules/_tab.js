@@ -96,7 +96,7 @@ layui.define(['element', '_common', '_route'], function(exports) {
         var tabIndex = that.exists(data.title);
         if (tabIndex === -1) {
             globalTabIdIndex++;
-            var content = '<iframe src="' + data.href + '" data-id="' + globalTabIdIndex + '"></iframe>';
+            var content = '';
             var title = '';
             if (data.icon !== undefined) {
                 if (data.icon.indexOf('fa-') !== -1) {
@@ -107,7 +107,7 @@ layui.define(['element', '_common', '_route'], function(exports) {
             }
             title += '<cite>' + data.title + '</cite>';
             if (_config.closed) {
-                title += '<i class="layui-icon layui-unselect layui-tab-close" data-id="' + globalTabIdIndex + '" >&#x1006;</i>';
+                title += '<i class="layui-icon layui-unselect layui-tab-close" >&#x1006;</i>';
             }
             //添加tab
             element.tabAdd(ELEM.tabFilter, {
@@ -117,12 +117,15 @@ layui.define(['element', '_common', '_route'], function(exports) {
             });
             if (_config.closed) {
                 //监听关闭事件
-                ELEM.titleBox.find('li').children('i.layui-tab-close[data-id=' + globalTabIdIndex + ']').on('click', function() {
+                ELEM.titleBox.find('li').children('i.layui-tab-close').on('click', function() {
+                    var deleteDom = $('#qqm-content > div[lay-id = "' + $(this).parent('li').attr('lay-id') + '"]');
+                    deleteDom.remove();
                     element.tabDelete(ELEM.tabFilter, $(this).parent('li').attr('lay-id')).init();
                     if (_config.contextMenu) {
                         $(document).find('div.uiba-contextmenu').remove(); //移除右键菜单dom
                     }
                 });
+
             };
             //切换到当前打开的选项卡
             element.tabChange(ELEM.tabFilter, that.getTabId(data.title));

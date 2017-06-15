@@ -19,7 +19,7 @@
         _method: '_method',
         echarts: 'echarts'
     });
- 
+    // 设定子页面加载模式
     layui.use(['_route', '_config'], function() {
         var _route = layui._route,
             _config = layui._config;
