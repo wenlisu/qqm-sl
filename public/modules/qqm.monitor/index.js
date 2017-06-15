@@ -14,11 +14,8 @@ layui.use(['form', 'element', 'laypage', '_route', 'laydate', 'laytpl', 'echarts
         _view = new layui._view('#table'),
         _fetch = layui._fetch,
         date0, date1;
-        var formDate = {
-              length: 0
-        };
     // 监听时间选择
-     date0 = {
+    date0 = {
         min: '1910-01-01 23:59:59',
         max: '2099-01-01 23:59:59',
         format: 'YYYY-MM-DD hh:mm',
@@ -58,13 +55,18 @@ layui.use(['form', 'element', 'laypage', '_route', 'laydate', 'laytpl', 'echarts
         _fetch('/monitorPerHoursPost',
             data.field
         ).then(function(data) {
-            $("#monitorView").html(data.formData);
+            if (!!data.formData) {
+                $("#monitorView").html(data.formData);
+            } else {
+                $("#monitorView").html('<tr>\
+                                            <td colspan="7">暂无数据</td>\
+                                        </tr>');
+            }
         }, function(err) {
             layer.alert(err, { icon: 2 });
         });
         return false;
     });
-     _view.render($("#monitorView"), formDate);
     var myLine = echarts.init(document.getElementById('chartLine'));
     var myBar = echarts.init(document.getElementById('chartBar'));
     // 指定图表的配置项和数据

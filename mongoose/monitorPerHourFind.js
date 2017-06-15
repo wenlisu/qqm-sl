@@ -26,7 +26,7 @@ function getResultByFindDate(objDate, res, response, download){
 		if(err){
 	 		console.log(err);
 		} else {
-  		    var str1 = " ";
+  		    var str1 = "";
 		    var strArr = new Array();
 		    var dateArray = new Array();
 		    var regUserArray = new Array();
