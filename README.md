@@ -1,5 +1,4 @@
-# qqm-sl
-#### server
+## server
 ```
 $ npm start
 ```
