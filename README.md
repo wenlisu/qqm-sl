@@ -10,7 +10,6 @@ $ npm start
 
 ```
 var mongodbInfor = {
-	// 'host': '192.168.1.139',
 	'host': 'localhost:27017',
 	'port':  '27017',
 	'database': 'monitorperhour'
