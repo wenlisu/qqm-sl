@@ -6,7 +6,7 @@ $ npm start
 ```
 打开浏览器`localhost:8000/`。   
 
-## 定义mongodb地址：
+## 定义mongodb地址为本地：
 
 ```
 var mongodbInfor = {
