@@ -4,7 +4,8 @@
 
 /* CSS Document */
 
-body.login,body.registered {
+body.login,
+body.registered {
     background: #23262e;
 }
 
@@ -152,4 +153,19 @@ body.login,body.registered {
     background-color: #f2dede;
     border-color: #ebccd1;
     font-weight: bold;
+}
+
+ .qqm-module .qqm-breadcrumb {
+    padding: 0px 15px 10px;
+}
+
+ .qqm-module .qqm-breadcrumb a {
+    padding-right: 8px;
+    line-height: 22px;
+    font-size: 14px;
+    color: #333!important;
+}
+
+.qqm-module .layui-breadcrumb {
+    visibility: visible;
 }

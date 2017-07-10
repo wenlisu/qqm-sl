@@ -5,7 +5,7 @@ var moveExcel = require('../routes/jsGetData/moveExcelFileDowload');
 var LinkMongodb = require('./module/linkMongodb');
 var mongodbInfor = {
 	// 'host': '192.168.1.139',
-	'host': 'localhost:27017',
+	'host': 'localhost',
 	'port':  '27017',
 	'database': 'monitorperhour'
 

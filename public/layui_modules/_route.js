@@ -99,7 +99,6 @@ layui.define(['layer', 'element', 'jquery'], function(exports) {
     _route.setBreadcrumb = function(params, setting) {
         var htmlStr = '',
             set = setting || {};
-
         if (set.hide) {
             return $('.qqm-breadcrumb').addClass('layui-hide');
         } else {
