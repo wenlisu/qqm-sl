@@ -14,9 +14,12 @@ LinkMongodb.prototype.connect = function () {
 
 	var mongoose = require('mongoose');
 	var mongodbUrl = "mongodb://" + this.host + ":" + this.port + "/" + this.database;
-   	mongoose.connect(mongodbUrl);
+   	mongoose.connect(mongodbUrl,{useMongoClient: true});
 	var db = mongoose.connection;
-	db.on('error', console.error.bind(console, 'connection error:'));
+	// db.on('error', console.error.bind(console, 'connection error:'));
+	db.on('error', (error) => {
+		console.log('error:',error);
+	});
 	return db;
 
 	// db.on('error', function(error){

@@ -4,7 +4,7 @@
 $ npm install
 $ npm start
 ```
-打开浏览器`localhost:8000/`。   
+打开浏览器`localhost:8300/`。   
 
 ## 定义mongodb地址为本地：
 

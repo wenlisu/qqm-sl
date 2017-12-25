@@ -8,7 +8,6 @@ var mongodbInfor = {
 	'host': 'localhost',
 	'port':  '27017',
 	'database': 'monitorperhour'
-
 };
 var connectDb = new LinkMongodb(mongodbInfor);
 var db = connectDb.connect();
